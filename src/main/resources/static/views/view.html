@@ -1,0 +1,23 @@
+<div class="span6">
+	<h3>Subject: {{ email.subject }}</h3>
+	<h4>From: {{ email.from }}</h4>
+	<h4 data-ng-show="(email.replyTo != '')">Reply-to: {{ email.replyTo }}</h4>
+	<h4>To: {{ email.to }}</h4>
+	<h4>Date: {{ email.date | date:'dd/MM/yyyy hh:MM' }}</h4>
+	<a data-ng-click="back()" class="btn btn-small btn-danger">Inbox</a>
+    <a data-ng-click="switchTo('html')" data-ng-show="email.htmlBody" class="btn btn-small btn-primary">HTML</a>
+    <a data-ng-click="switchTo('text')" data-ng-show="email.textBody" class="btn btn-small btn-primary">Text/Plain</a>
+    <br/>
+    <br/>
+    <div class="panel panel-default" data-ng-show="showHtml">
+	  <div class="panel-body" data-ng-bind-html="email.htmlBody">
+	  </div>
+	</div>
+    <pre id="preTextBody" data-ng-show="!showHtml">{{ email.textBody }}</pre>
+    <div data-ng-show="showAttachments">
+    <h4>Attachments</h4>
+   		<p data-ng-repeat="attachment in email.attachments">  
+    		<a href="/attachments/{{ attachment.id }}" target="_blank">{{attachment.fileName }}</a> {{ attachment.size/1024 | number:2 }} KB ({{ attachment.mimeType }})
+    	</p>  
+    </div>
+</div>
