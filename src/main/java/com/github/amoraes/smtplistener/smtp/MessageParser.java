@@ -66,11 +66,16 @@ public class MessageParser {
            if (mimeMsg.isMultipart()) {
                Multipart multipart = (Multipart) mimeMsg.getBody();
                parseBodyParts(multipart);
-           } else {
-               //If it's single part message, just get text body
-               String text = getTxtPart(mimeMsg);
-               textBody.append(text);
-           }
+			} else {
+				// If it's single part message, just get text or html body
+				if (mimeMsg.getMimeType().equals("text/html")) {
+					String html = getTxtPart(mimeMsg);
+					htmlBody.append(html);
+				} else {
+					String text = getTxtPart(mimeMsg);
+					textBody.append(text);
+				}
+			}
 
            for (BodyPart attach : attachmentsBodyPart) {
                String attName = attach.getFilename();
