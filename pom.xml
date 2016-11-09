@@ -70,6 +70,11 @@
 			<artifactId>scala-library</artifactId>
 			<version>2.10.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 
@@ -87,5 +92,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>smtplistener</finalName>
 	</build>
 </project>
