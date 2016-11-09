@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.github.amoraes.smtplistener.smtp.SMTPListener;
 
@@ -15,7 +18,8 @@ import com.github.amoraes.smtplistener.smtp.SMTPListener;
  * @author Alessandro Moraes
  */
 @SpringBootApplication
-public class ServerApplication {
+@EnableScheduling
+public class ServerApplication extends SpringBootServletInitializer {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -36,5 +40,11 @@ public class ServerApplication {
 	
 	public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);
+    }
+	
+	private static Class<ServerApplication> applicationClass = ServerApplication.class;
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(applicationClass);
     }
 }
