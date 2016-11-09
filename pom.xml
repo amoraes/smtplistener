@@ -8,6 +8,7 @@
 	<description>An application composed by a SMTP Listener plus a Webmail like interface, 
 	useful to test and see the content of e-mails sent by other applications in a development 
 	environment.</description>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
