@@ -16,7 +16,7 @@ public class Cleaner {
 	private SMTPListener smtpListener; 
 	
 	@Scheduled(cron="${cleaner.schedule}")
-    public void reportCurrentTime() {
+    public void clearEmailsAndAttachments() {
         log.info("Cleaning received email from memory!");
         smtpListener.getAttachments().clear();
         smtpListener.getEmails().clear();
